@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Alumnos — Universidad Valmont</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+  <style>
+    body { font-family: 'DM Sans', sans-serif; background: #EEEDFE; padding: 2rem; }
+
+    .banner {
+      max-width: 1000px;
+      margin: auto;
+      background: #3C3489;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn-light { background: #EEEDFE; }
+    .btn-green { background: #1D9E75; color: white; }
+    .btn-danger { background: #E24B4A; color: white; }
+
+    .card {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 0 0 16px 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    th {
+      background: #EEEDFE;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+    }
+
+    .modal-close {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      background: #534AB7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="banner">
+  <div>
+    <h2>Panel de alumnos</h2>
+    <p>Universidad Valmont</p>
+  </div>
+
+  <div>
+    <button class="btn btn-light" onclick="window.location.href='formulario.html'">← Volver</button>
+    <button class="btn btn-green" onclick="exportarExcel()">Exportar Excel</button>
+    <button class="btn btn-danger" onclick="limpiarTodo()">Limpiar</button>
+  </div>
+</div>
+
+<div class="card">
+
+  <input type="text" id="buscar" placeholder="Buscar..." oninput="renderTabla()">
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Folio</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Carrera</th>
+        <th>Turno</th>
+        <th>Beca</th>
+        <th>Fecha</th>
+        <th>Ver</th>
+      </tr>
+    </thead>
+    <tbody id="cuerpoTabla"></tbody>
+  </table>
+
+  <div id="barras"></div>
+
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="cerrarModal(event)">
+  <div class="modal">
+    <h3 id="modalNombre"></h3>
+    <div id="modalGrid"></div>
+
+    <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('show')">
+      Cerrar
+    </button>
+  </div>
+</div>
+
+<!-- TU JS -->
+<script src="app.js"></script>
+
+</body>
+</html>

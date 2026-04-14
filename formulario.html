@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscripción — Universidad Valmont</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #EEEDFE; min-height: 100vh; padding: 2.5rem 1rem; }
+    .banner { max-width: 780px; margin: 0 auto; background: #3C3489; border-radius: 16px 16px 0 0; padding: 1.75rem 2rem; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .escudo { width: 56px; height: 56px; background: #EEEDFE; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .escudo svg { width: 30px; height: 30px; }
+    .banner-text h1 { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: #EEEDFE; }
+    .banner-text p { font-size: 13px; color: #AFA9EC; margin-top: 3px; }
+    .folio-tag { margin-left: auto; background: #26215C; border-radius: 8px; padding: 6px 14px; font-size: 12px; color: #AFA9EC; white-space: nowrap; }
+    .folio-tag strong { color: #EEEDFE; display: block; font-size: 14px; }
+    .card { max-width: 780px; margin: 0 auto; background: #fff; border-radius: 0 0 16px 16px; border: 0.5px solid #ccc; border-top: none; padding: 2rem 2rem 2.5rem; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #534AB7; margin: 1.75rem 0 0.75rem; padding-bottom: 6px; border-bottom: 0.5px solid #CECBF6; }
+    .section-label:first-of-type { margin-top: 0; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .g4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+    .s2 { grid-column: span 2; } .s3 { grid-column: span 3; } .s4 { grid-column: span 4; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; font-weight: 500; color: #555; }
+    .field input, .field select, .field textarea { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 0.5px solid #ccc; border-radius: 8px; background: #fff; color: #1a1a1a; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: #7F77DD; box-shadow: 0 0 0 3px rgba(127,119,221,0.15); }
+    .field textarea { resize: vertical; min-height: 70px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .chip { padding: 6px 14px; border: 0.5px solid #ccc; border-radius: 20px; font-size: 13px; color: #555; cursor: pointer; user-select: none; transition: all 0.15s; background: #fff; }
+    .chip input { display: none; }
+    .chip.on { background: #EEEDFE; border-color: #7F77DD; color: #3C3489; font-weight: 500; }
+    .carrera-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; margin-top: 6px; }
+    .carrera-card { border: 0.5px solid #ccc; border-radius: 10px; padding: 12px 14px; cursor: pointer; transition: all 0.15s; background: #fff; }
+    .carrera-card:hover { border-color: #7F77DD; background: #EEEDFE; }
+    .carrera-card.on { border-color: #534AB7; background: #EEEDFE; }
+    .carrera-card .area { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #7F77DD; margin-bottom: 4px; }
+    .carrera-card .nombre { font-size: 13px; font-weight: 500; color: #26215C; line-height: 1.35; }
+    .carrera-card .dur { font-size: 11px; color: #888; margin-top: 4px; }
+    .carrera-card.on .nombre { color: #3C3489; }
+    .btn-row { display: flex; gap: 10px; margin-top: 2rem; }
+    .btn { flex: 1; padding: 11px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; border: none; border-radius: 9px; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: #534AB7; color: #fff; }
+    .btn-primary:hover { background: #3C3489; }
+    .btn-outline { background: #EEEDFE; color: #3C3489; border: 0.5px solid #CECBF6; }
+    .btn-outline:hover { background: #CECBF6; }
+    .btn-panel { display: block; width: 100%; padding: 10px; margin-top: 12px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; background: #fff; color: #534AB7; border: 0.5px solid #CECBF6; border-radius: 9px; cursor: pointer; text-align: center; transition: background 0.15s; }
+    .btn-panel:hover { background: #EEEDFE; }
+    .confirm { display: none; margin-top: 1.25rem; background: #EEEDFE; border: 0.5px solid #AFA9EC; border-radius: 10px; padding: 14px 18px; font-size: 14px; color: #3C3489; text-align: center; }
+    hr { border: none; border-top: 0.5px solid #eee; margin: 1.5rem 0; }
+    .nota { font-size: 12px; color: #888; margin-top: 0.5rem; line-height: 1.5; }
+    @media (max-width: 560px) {
+      .g2, .g3, .g4 { grid-template-columns: 1fr; }
+      .s2, .s3, .s4 { grid-column: span 1; }
+      .btn-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="escudo">
+      <svg viewBox="0 0 32 32" fill="none">
+        <path d="M16 3L3 9v7c0 7.18 5.58 13.89 13 15 7.42-1.11 13-7.82 13-15V9L16 3z" stroke="#534AB7" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M10 16l4 4 8-8" stroke="#534AB7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="banner-text">
+      <h1>Universidad Valmont</h1>
+      <p>Solicitud de inscripción — ciclo escolar 2025–2026</p>
+    </div>
+    <div class="folio-tag">
+      Folio
+      <strong id="folio">—</strong>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <p class="section-label">Datos personales</p>
+    <div class="g4">
+      <div class="field s2">
+        <label>Nombre(s)</label>
+        <input type="text" id="nombres" placeholder="Ej. Carlos Alberto">
+      </div>
+      <div class="field">
+        <label>Apellido paterno</label>
+        <input type="text" id="apPat" placeholder="Ej. Ramírez">
+      </div>
+      <div class="field">
+        <label>Apellido materno</label>
+        <input type="text" id="apMat" placeholder="Ej. Torres">
+      </div>
+      <div class="field">
+        <label>Fecha de nacimiento</label>
+        <input type="date" id="fechaNac">
+      </div>
+      <div class="field">
+        <label>CURP</label>
+        <input type="text" id="curp" placeholder="RATC010203HDFMRL09" maxlength="18">
+      </div>
+      <div class="field">
+        <label>Sexo</label>
+        <select id="sexo">
+          <option value="">Seleccionar</option>
+          <option>Femenino</option>
+          <option>Masculino</option>
+          <option>Prefiero no especificar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Nacionalidad</label>
+        <input type="text" id="nacionalidad" placeholder="Mexicana">
+      </div>
+    </div>
+
+    <p class="section-label">Contacto</p>
+    <div class="g3">
+      <div class="field">
+        <label>Teléfono celular</label>
+        <input type="tel" id="celular" placeholder="999 123 4567">
+      </div>
+      <div class="field s2">
+        <label>Correo electrónico</label>
+        <input type="email" id="email" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="field s3">
+        <label>Domicilio</label>
+        <input type="text" id="domicilio" placeholder="Calle, número, colonia, ciudad">
+      </div>
+    </div>
+
+    <p class="section-label">Procedencia académica</p>
+    <div class="g3">
+      <div class="field s2">
+        <label>Nombre del bachillerato / preparatoria</label>
+        <input type="text" id="prepa" placeholder="Ej. COBACH Plantel 01">
+      </div>
+      <div class="field">
+        <label>Año de egreso</label>
+        <input type="number" id="egreso" placeholder="2024" min="2000" max="2030">
+      </div>
+      <div class="field">
+        <label>Promedio general</label>
+        <input type="number" id="promedio" placeholder="9.2" min="0" max="10" step="0.1">
+      </div>
+      <div class="field">
+        <label>Modalidad de bachillerato</label>
+        <select id="modalidadBach">
+          <option value="">Seleccionar</option>
+          <option>Escolarizado</option>
+          <option>Semiescolarizado</option>
+          <option>Abierto / en línea</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado donde estudió</label>
+        <input type="text" id="estadoPrepa" placeholder="Ej. Yucatán">
+      </div>
+    </div>
+
+    <p class="section-label">Carrera a la que aspira</p>
+    <div class="carrera-grid" id="carreraGrid">
+      <div class="carrera-card" data-val="Medicina"><div class="area">Salud</div><div class="nombre">Medicina</div><div class="dur">6 años</div></div>
+      <div class="carrera-card" data-val="Enfermería"><div class="area">Salud</div><div class="nombre">Enfermería</div><div class="dur">4 años</div></div>
+      <div class="carrera-card" data-val="Ingeniería en Sistemas"><div class="area">Tecnología</div><div class="nombre">Ingeniería en sistemas</div><div class="dur">5 años</div></div>
+      <div class="carrera-card" data-val="Ingeniería Industrial"><div class="area">Tecnología</div><div class="nombre">Ingeniería industrial</div><div class="dur">5 años</div></div>
+      <div class="carrera-card" data-val="Derecho"><div class="area">Ciencias sociales</div><div class="nombre">Derecho</div><div class="dur">5 años</div></div>
+      <div class="carrera-card" data-val="Psicología"><div class="area">Ciencias sociales</div><div class="nombre">Psicología</div><div class="dur">4 años</div></div>
+      <div class="carrera-card" data-val="Administración de Empresas"><div class="area">Negocios</div><div class="nombre">Administración de empresas</div><div class="dur">4 años</div></div>
+      <div class="carrera-card" data-val="Contaduría Pública"><div class="area">Negocios</div><div class="nombre">Contaduría pública</div><div class="dur">4 años</div></div>
+      <div class="carrera-card" data-val="Arquitectura"><div class="area">Diseño</div><div class="nombre">Arquitectura</div><div class="dur">5 años</div></div>
+      <div class="carrera-card" data-val="Diseño Gráfico"><div class="area">Diseño</div><div class="nombre">Diseño gráfico</div><div class="dur">4 años</div></div>
+      <div class="carrera-card" data-val="Pedagogía"><div class="area">Educación</div><div class="nombre">Pedagogía</div><div class="dur">4 años</div></div>
+      <div class="carrera-card" data-val="Nutrición"><div class="area">Salud</div><div class="nombre">Nutrición</div><div class="dur">4 años</div></div>
+    </div>
+    <input type="hidden" id="carreraSeleccionada">
+
+    <div class="field" style="margin-top:14px;">
+      <label>Segunda opción de carrera (opcional)</label>
+      <select id="carrera2">
+        <option value="">Ninguna</option>
+        <option>Medicina</option><option>Enfermería</option><option>Ingeniería en Sistemas</option>
+        <option>Ingeniería Industrial</option><option>Derecho</option><option>Psicología</option>
+        <option>Administración de Empresas</option><option>Contaduría Pública</option>
+        <option>Arquitectura</option><option>Diseño Gráfico</option><option>Pedagogía</option><option>Nutrición</option>
+      </select>
+    </div>
+
+    <p class="section-label">Preferencias de estudio</p>
+    <div class="g3">
+      <div class="field">
+        <label>Turno preferido</label>
+        <select id="turno">
+          <option value="">Seleccionar</option>
+          <option>Matutino</option><option>Vespertino</option><option>Nocturno</option><option>Sin preferencia</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Modalidad</label>
+        <select id="modalidadEst">
+          <option value="">Seleccionar</option>
+          <option>Presencial</option><option>Híbrida</option><option>En línea</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿Requiere beca?</label>
+        <select id="beca">
+          <option value="">Seleccionar</option>
+          <option>Sí, la solicito</option><option>No por ahora</option>
+        </select>
+      </div>
+    </div>
+
+  
+
+    <p class="section-label">Información adicional</p>
+    <div class="field">
+      <label>¿Por qué deseas estudiar en la Universidad Valmont?</label>
+      <textarea id="motivo" placeholder="Escribe brevemente tus motivos y expectativas…"></textarea>
+    </div>
+
+    <hr>
+    <p class="nota">Al enviar esta solicitud, el aspirante declara que la información proporcionada es verídica. Universidad Valmont — Mérida, Yucatán. Ciclo 2025–2026.</p>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="limpiarForm()">Limpiar</button>
+      <button class="btn btn-primary" onclick="enviarSolicitud()">Enviar solicitud</button>
+    </div>
+
+    <div class="confirm" id="confirmMsg">
+      Solicitud registrada. Folio: <strong id="folioFinal"></strong>
+    </div>
+
+    <button class="btn-panel" onclick="window.location.href='panel.html'">Ver panel de alumnos registrados →</button>
+
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
